@@ -27,7 +27,7 @@ public class MineSweeper {
 
     public void Run() {
 
-        int satirno, sutunno;
+        int rowNumber, columnNumber;
 
         prepareGame();
         print(firstMap);
@@ -39,22 +39,22 @@ public class MineSweeper {
             print(finalMap);
 
             System.out.print("Satır Giriniz : ");
-            satirno = x.nextInt();
+            rowNumber = x.nextInt();
             System.out.print("Sütun Giriniz : ");
-            sutunno = x.nextInt();
+            columnNumber = x.nextInt();
 
-            while (satirno >= this.row || sutunno >= this.column) {
+            while (rowNumber >= this.row || columnNumber >= this.column) {
 
                 System.out.println("Satır veya Sütun Değerini Yanlış Girdiniz. Tekrar Deneyiniz !!");
 
                 System.out.print("Satır Giriniz : ");
-                satirno = x.nextInt();
+                rowNumber = x.nextInt();
                 System.out.print("Sütun Giriniz : ");
-                sutunno = x.nextInt();
+                columnNumber = x.nextInt();
 
             }
 
-            isLose(satirno, sutunno);
+            isLose(rowNumber, columnNumber);
 
             isWin();
 
@@ -65,7 +65,7 @@ public class MineSweeper {
 
     public void prepareGame() {
 
-        int randomRow, randomColumn, sayac = 0;
+        int randomRow, randomColumn, counter = 0;
 
         for (int i = 0; i < firstMap.length; i++) {
 
@@ -76,17 +76,50 @@ public class MineSweeper {
 
         }
 
-        while (sayac != (size / 4)) {
+        while (counter != (size / 4)) {
 
             randomRow = rand.nextInt(this.row);
             randomColumn = rand.nextInt(this.column);
 
             if (!firstMap[randomRow][randomColumn].equals("*")) {
                 firstMap[randomRow][randomColumn] = "*";
-                sayac++;
+                counter++;
             }
 
         }
+
+    }
+
+
+    public String mineControl(int row , int column){
+
+        int sayac = 0;
+
+        if (column > 0 && firstMap[row][column - 1].equals("*")) // sol
+            sayac++;
+
+        if (column < firstMap[row].length - 1 && firstMap[row][column + 1].equals("*")) // sağ
+            sayac++;
+
+        if (row > 0 && firstMap[row - 1][column].equals("*")) // üst
+            sayac++;
+
+        if (row > 0 && column > 0 && firstMap[row - 1][column - 1].equals("*")) // sol üst
+            sayac++;
+
+        if (row > 0 && column < firstMap[row].length - 1 && firstMap[row - 1][column + 1].equals("*")) // sağ üst
+            sayac++;
+
+        if (row < firstMap.length - 1 && firstMap[row + 1][column].equals("*")) // alt
+            sayac++;
+
+        if (row < firstMap.length - 1 && column > 0 && firstMap[row + 1][column - 1].equals("*")) // sol alt
+            sayac++;
+
+        if (row < firstMap.length - 1 && column < firstMap[row].length - 1 && firstMap[row + 1][column + 1].equals("*")) // sağ alt
+            sayac++;
+
+        return String.valueOf(sayac);
 
     }
 
@@ -105,7 +138,7 @@ public class MineSweeper {
 
                 if (sayac >= size) {
                     System.out.println("Oyunu Kazandınız ! ");
-                    print(finalMap);
+                    print(firstMap);
                     this.game = false;
                 }
 
@@ -117,15 +150,17 @@ public class MineSweeper {
 
     public void isLose(int row, int column) {
 
-        if (finalMap[row][column].equals("1")) {
+        if (!finalMap[row][column].equals("-") && !finalMap[row][column].equals("*")  ) {
             System.out.println("Secili Koordinat Girdiniz Tekrar Deneyiniz !");
         }
 
         if (firstMap[row][column].equals("-")) {
 
-            firstMap[row][column] = "1";
 
-            finalMap[row][column] = "1";
+
+            firstMap[row][column] = mineControl(row,column);
+
+            finalMap[row][column] = mineControl(row,column);
 
         }
 
@@ -138,22 +173,19 @@ public class MineSweeper {
 
     }
 
+
     public void print(String[][] map) {
+
         for (int i = 0; i < map.length; i++) {
+
             for (int j = 0; j < map[i].length; j++) {
 
-                if (map[i][j].equals("-")) {
-                    System.out.print(" ");
-                }
-
                 System.out.print(map[i][j] + " ");
+
             }
+
             System.out.println();
         }
     }
 
 }
-
-
-
-
