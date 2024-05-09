@@ -1,4 +1,4 @@
-Mayın Tarlası Oyunu
+# Mayın Tarlası Oyunu
 Bu Java projesi, klasik bir Mayın Tarlası oyununu temsil eder. Oyunu oynamak için bir Java geliştirme ortamına ihtiyacınız olacak.
 
 
