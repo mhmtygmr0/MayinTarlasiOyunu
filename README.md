@@ -1,6 +1,5 @@
 # Mayın Tarlası Oyunu
 
-![Ekran görüntüsü 2024-05-09 130936](https://github.com/mhmtygmr0/MayinTarlasiOyunu/assets/93721529/09b35f6e-e7bb-4b6d-b61e-0ad1ea632017) 
 ![Ekran görüntüsü 2024-05-09 131335](https://github.com/mhmtygmr0/MayinTarlasiOyunu/assets/93721529/78de1041-87f2-4246-a557-893691b9a0cc)
 ![Ekran görüntüsü 2024-05-09 131420](https://github.com/mhmtygmr0/MayinTarlasiOyunu/assets/93721529/10c2c772-5df9-4288-af9f-0d3d8be235cb)
 
