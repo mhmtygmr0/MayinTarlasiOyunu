@@ -164,7 +164,7 @@ public class MineSweeper {
                 }
 
                 if (sayac >= size) {
-                    System.out.println("Oyunu Kazandınız ! ");
+                    System.out.println("OYUNU KAZANDINIZ !! ");
                     print(firstMap);
                     this.gameProcess = false;
                 }
@@ -179,7 +179,7 @@ public class MineSweeper {
 
         if (firstMap[row][column].equals("*")) {
 
-            System.out.println("Game Over !! ");
+            System.out.println("GAME OVER !! ");
             this.gameProcess = false;
 
         }
