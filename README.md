@@ -13,10 +13,10 @@ Java IDE (Tercihinize göre)
 
 
 #### Kurulum
-**1** - Bu projeyi bilgisayarınıza klonlayın veya ZIP olarak indirin.
-**2** - Proje klasörüne gidin.
-**3** - Java IDE'nizde projeyi açın.
-**4** - Projeyi çalıştırın.
+**1** - Bu projeyi bilgisayarınıza klonlayın veya ZIP olarak indirin. <br/>
+**2** - Proje klasörüne gidin. <br/>
+**3** - Java IDE'nizde projeyi açın. <br/>
+**4** - Projeyi çalıştırın. <br/>
 
 
 #### Nasıl Oynanır
