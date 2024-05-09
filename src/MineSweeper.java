@@ -41,21 +41,18 @@ public class MineSweeper {
 
             print(finalMap);
 
-            System.out.print("Satır Giriniz : ");
-            rowNumber = x.nextInt();
-            System.out.print("Sütun Giriniz : ");
-            columnNumber = x.nextInt();
-
-            while ((rowNumber >= this.row || rowNumber < 0) || (columnNumber >= this.column || columnNumber < 0)) {
-
-                System.out.println("Lütfen geçerli bir satır ve sütun numarası giriniz !!!");
+            do{
 
                 System.out.print("Satır Giriniz : ");
                 rowNumber = x.nextInt();
                 System.out.print("Sütun Giriniz : ");
                 columnNumber = x.nextInt();
 
-            }
+                if((rowNumber >= this.row || rowNumber < 0) || (columnNumber >= this.column || columnNumber < 0)){
+                    System.out.println("Lütfen geçerli bir satır ve sütun numarası giriniz !!!");
+                }
+
+            }while((rowNumber >= this.row || rowNumber < 0) || (columnNumber >= this.column || columnNumber < 0));
 
             updateGame(rowNumber, columnNumber);
 
