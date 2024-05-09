@@ -153,17 +153,17 @@ public class MineSweeper {
     //  Oyunun kazanılıp kazanılmadığını kontrol eder.
     public void isWin() {
 
-        int sayac = 0;
+        int counter2 = 0;
 
         for (int i = 0; i < finalMap.length; i++) {
 
             for (int j = 0; j < finalMap[i].length; j++) {
 
                 if (!firstMap[i][j].equals("-")) {
-                    sayac++;
+                    counter2++;
                 }
 
-                if (sayac >= size) {
+                if (counter2 >= size) {
                     System.out.println("OYUNU KAZANDINIZ !!");
                     print(firstMap);
                     this.gameProcess = false;
