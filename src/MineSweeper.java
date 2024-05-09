@@ -4,12 +4,12 @@ import java.util.Scanner;
 public class MineSweeper {
 
 
+    String[][] firstMap;
+    String[][] finalMap;
     int row;
     int column;
     int size;
-    String[][] firstMap;
-    String[][] finalMap;
-    boolean game = true;
+    boolean gameProcess = true;
 
 
     Random rand = new Random();
@@ -17,10 +17,10 @@ public class MineSweeper {
 
 
     MineSweeper(int row, int column) {
-        this.row = row;
-        this.column = column;
         this.firstMap = new String[row][column];
         this.finalMap = new String[row][column];
+        this.row = row;
+        this.column = column;
         this.size = row * column;
     }
 
@@ -34,7 +34,7 @@ public class MineSweeper {
         System.out.println("=================================");
         System.out.println("Mayın Tarlası Oyununa Hoşgeldiniz !");
 
-        while (this.game) {
+        while (this.gameProcess) {
 
             print(finalMap);
 
@@ -43,7 +43,7 @@ public class MineSweeper {
             System.out.print("Sütun Giriniz : ");
             columnNumber = x.nextInt();
 
-            while (rowNumber >= this.row || columnNumber >= this.column) {
+            while ((rowNumber >= this.row || rowNumber < 0) || (columnNumber >= this.column || columnNumber < 0)) {
 
                 System.out.println("Satır veya Sütun Değerini Yanlış Girdiniz. Tekrar Deneyiniz !!");
 
@@ -54,6 +54,8 @@ public class MineSweeper {
 
             }
 
+            updateGame(rowNumber, columnNumber);
+
             isLose(rowNumber, columnNumber);
 
             isWin();
@@ -62,6 +64,7 @@ public class MineSweeper {
 
         }
     }
+
 
     public void prepareGame() {
 
@@ -91,35 +94,52 @@ public class MineSweeper {
     }
 
 
-    public String mineControl(int row , int column){
+    public void updateGame(int row, int column) {
 
-        int sayac = 0;
+        if (!finalMap[row][column].equals("-") && !finalMap[row][column].equals("*")) {
+            System.out.println("Secili Koordinat Girdiniz Tekrar Deneyiniz !");
+        }
+
+        if (firstMap[row][column].equals("-")) {
+
+            firstMap[row][column] = mineControl(row, column);
+
+            finalMap[row][column] = mineControl(row, column);
+
+        }
+
+    }
+
+
+    public String mineControl(int row, int column) {
+
+        int counterMine = 0;
 
         if (column > 0 && firstMap[row][column - 1].equals("*")) // sol
-            sayac++;
+            counterMine++;
 
         if (column < firstMap[row].length - 1 && firstMap[row][column + 1].equals("*")) // sağ
-            sayac++;
+            counterMine++;
 
         if (row > 0 && firstMap[row - 1][column].equals("*")) // üst
-            sayac++;
+            counterMine++;
 
         if (row > 0 && column > 0 && firstMap[row - 1][column - 1].equals("*")) // sol üst
-            sayac++;
+            counterMine++;
 
         if (row > 0 && column < firstMap[row].length - 1 && firstMap[row - 1][column + 1].equals("*")) // sağ üst
-            sayac++;
+            counterMine++;
 
         if (row < firstMap.length - 1 && firstMap[row + 1][column].equals("*")) // alt
-            sayac++;
+            counterMine++;
 
         if (row < firstMap.length - 1 && column > 0 && firstMap[row + 1][column - 1].equals("*")) // sol alt
-            sayac++;
+            counterMine++;
 
         if (row < firstMap.length - 1 && column < firstMap[row].length - 1 && firstMap[row + 1][column + 1].equals("*")) // sağ alt
-            sayac++;
+            counterMine++;
 
-        return String.valueOf(sayac);
+        return String.valueOf(counterMine);
 
     }
 
@@ -139,35 +159,20 @@ public class MineSweeper {
                 if (sayac >= size) {
                     System.out.println("Oyunu Kazandınız ! ");
                     print(firstMap);
-                    this.game = false;
+                    this.gameProcess = false;
                 }
 
             }
-
         }
     }
 
 
     public void isLose(int row, int column) {
 
-        if (!finalMap[row][column].equals("-") && !finalMap[row][column].equals("*")  ) {
-            System.out.println("Secili Koordinat Girdiniz Tekrar Deneyiniz !");
-        }
-
-        if (firstMap[row][column].equals("-")) {
-
-
-
-            firstMap[row][column] = mineControl(row,column);
-
-            finalMap[row][column] = mineControl(row,column);
-
-        }
-
         if (firstMap[row][column].equals("*")) {
 
             System.out.println("Game Over !! ");
-            this.game = false;
+            this.gameProcess = false;
 
         }
 
@@ -183,9 +188,9 @@ public class MineSweeper {
                 System.out.print(map[i][j] + " ");
 
             }
-
             System.out.println();
         }
     }
+
 
 }

@@ -16,7 +16,9 @@ public class Main {
 
 
         boolean game = true;
-        while (game)
+
+        while (game) {
+
             if (satir < 2 || sutun < 2) {
 
                 System.out.println("Yanlış Değer Girdiniz Lütfen Tekrar Deneyiniz !");
@@ -27,6 +29,7 @@ public class Main {
                 sutun = x.nextInt();
 
             } else {
+
                 System.out.println("Satır için 0-" + (satir - 1) + " aralığında değer giriniz");
                 System.out.println("Sütun için 0-" + (sutun - 1) + " aralığında değer giriniz");
 
@@ -39,5 +42,8 @@ public class Main {
                 game = false;
 
             }
+        }
+
+
     }
 }
