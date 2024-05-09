@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class MineSweeper {
 
 
+    // Proje Nitelikleri
     String[][] firstMap;
     String[][] finalMap;
     int row;
@@ -16,6 +17,7 @@ public class MineSweeper {
     Scanner x = new Scanner(System.in);
 
 
+    //  Oyun alanının boyutlarını parametre olarak alan bir kurucu metod.
     MineSweeper(int row, int column) {
         this.firstMap = new String[row][column];
         this.finalMap = new String[row][column];
@@ -25,6 +27,7 @@ public class MineSweeper {
     }
 
 
+    // Oyunun ana döngüsünü içeren metot. Oyunu başlatır ve kullanıcı girişlerini alır.
     public void Run() {
 
         int rowNumber, columnNumber;
@@ -45,7 +48,7 @@ public class MineSweeper {
 
             while ((rowNumber >= this.row || rowNumber < 0) || (columnNumber >= this.column || columnNumber < 0)) {
 
-                System.out.println("Satır veya Sütun Değerini Yanlış Girdiniz. Tekrar Deneyiniz !!");
+                System.out.println("Lütfen geçerli bir satır ve sütun numarası giriniz !!!");
 
                 System.out.print("Satır Giriniz : ");
                 rowNumber = x.nextInt();
@@ -66,6 +69,7 @@ public class MineSweeper {
     }
 
 
+    // Oyun alanını hazırlar ve rastgele mayın yerleştirir.
     public void prepareGame() {
 
         int randomRow, randomColumn, counter = 0;
@@ -94,6 +98,7 @@ public class MineSweeper {
     }
 
 
+    // Oyun alanını güncelleyerek kullanıcının hamlesine yanıt verir.
     public void updateGame(int row, int column) {
 
         if (!finalMap[row][column].equals("-") && !finalMap[row][column].equals("*")) {
@@ -111,6 +116,7 @@ public class MineSweeper {
     }
 
 
+    // Belirtilen koordinatlarda mayın yoksa, koordinatın etrafındaki mayın sayısını bulma
     public String mineControl(int row, int column) {
 
         int counterMine = 0;
@@ -144,6 +150,7 @@ public class MineSweeper {
     }
 
 
+    //  Oyunun kazanılıp kazanılmadığını kontrol eder.
     public void isWin() {
 
         int sayac = 0;
@@ -167,6 +174,7 @@ public class MineSweeper {
     }
 
 
+    // Oyunun kaybedilip kaybedilmediğini kontrol eder.
     public void isLose(int row, int column) {
 
         if (firstMap[row][column].equals("*")) {
@@ -179,6 +187,7 @@ public class MineSweeper {
     }
 
 
+    // Oyun alanını ekrana yazdırır.
     public void print(String[][] map) {
 
         for (int i = 0; i < map.length; i++) {
