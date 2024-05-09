@@ -164,7 +164,7 @@ public class MineSweeper {
                 }
 
                 if (sayac >= size) {
-                    System.out.println("OYUNU KAZANDINIZ !! ");
+                    System.out.println("OYUNU KAZANDINIZ !!");
                     print(firstMap);
                     this.gameProcess = false;
                 }
